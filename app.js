@@ -50,7 +50,7 @@ app.put('/players/:ID/', async (req, res) => {
 app.get('/matches/:ID/', async (req, res) => {
   const {ID} = req.params
   const Query = `SELECT 
-  match_id AS matchID,
+  match_id AS matchId,
   match,
   year
 FROM 
@@ -65,7 +65,7 @@ WHERE
 //API 5
 app.get('/players/:ID/matches', async (req, res) => {
   const {ID} = req.params
-  const Query = `SELECT m.match_id as matchID , m.match , m.year from player_match_score p natural join match_details m where p.player_id = ?;`
+  const Query = `SELECT m.match_id as matchId , m.match , m.year from player_match_score p natural join match_details m where p.player_id = ?;`
 
   const DBres = await db.all(Query, [ID])
   res.send(DBres)
@@ -73,7 +73,7 @@ app.get('/players/:ID/matches', async (req, res) => {
 //API 6
 app.get('/matches/:ID/players', async (req, res) => {
   const {ID} = req.params
-  const Query = `SELECT m.player_id as playerID, m.player_name as playerName  
+  const Query = `SELECT m.player_id as playerId, m.player_name as playerName  
                FROM player_match_score p 
                NATURAL JOIN player_details m
                WHERE p.match_id = ?;`
